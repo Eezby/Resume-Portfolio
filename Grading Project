@@ -7,27 +7,27 @@ import java.util.Scanner;
 public class Runner {
 	
 		
-	public static double arithMean(double[] grades) {  								// PRE: grades[n] >= 0
+	public static double arithMean(double[] grades) {  					// PRE: grades[n] >= 0
 		double mean = 0;
 		for (int x = 0; x < grades.length; x++) {
 			mean = mean + grades[x];
 		}
-		return mean / grades.length; 												// POST: return the mean of dataset
+		return mean / grades.length; 							// POST: return the mean of dataset
 	}
 	
-	public static double standardDev(double[] grades, double mean) { 				// PRE: mean > 0, grades[n] >= 0
+	public static double standardDev(double[] grades, double mean) { 			// PRE: mean > 0, grades[n] >= 0
 		double standardmean = 0;
 		for (int x = 0; x < grades.length; x++) {
-			standardmean = standardmean + (Math.pow((grades[x] - mean), 2)); 		// Standard Deviation Step 1
+			standardmean = standardmean + (Math.pow((grades[x] - mean), 2)); 	// Standard Deviation Step 1
 		}
 		
-		standardmean = standardmean / (grades.length - 1); 							// Standard Deviation Step 2
-		standardmean = Math.sqrt(standardmean); 									// Standard Deviation Step 3
+		standardmean = standardmean / (grades.length - 1); 				// Standard Deviation Step 2
+		standardmean = Math.sqrt(standardmean); 					// Standard Deviation Step 3
 		
-		return standardmean; // POST: return the standard deviation
+		return standardmean; 								// POST: return the standard deviation
 	}
 	
-	public static String letterGrade(double grade, double mean, double standarddev) { // PRE: grade,mean,standarddev > 0
+	public static String letterGrade(double grade, double mean, double standarddev) { 	// PRE: grade,mean,standarddev > 0
 		String letter = "";
 		if (grade < mean - (1.5 * standarddev))
 			return "E";
@@ -41,7 +41,7 @@ public class Runner {
 			return "A";
 		
 		return "F";
-	} 																					// POST: return the lettergrade from computation
+	} 											// POST: return the lettergrade from computation
 	
 	public static void displayGradeNums(int[] numgrades) {
 		for (int x = 0; x < numgrades.length; x++) {
@@ -62,9 +62,9 @@ public class Runner {
 			}
 			System.out.println();
 		}
-	}																					// POST: display number of grades per letter
+	}											// POST: display number of grades per letter
 	
-	public static int[] checkGrade(String lettergrade, int[] numgrades) { // PRE: lettergrade equals "A" - "E"
+	public static int[] checkGrade(String lettergrade, int[] numgrades) { 			// PRE: lettergrade equals "A" - "E"
 		if (lettergrade.equals("A"))
 			numgrades[0]++;
 		else if (lettergrade.equals("B"))
@@ -76,79 +76,79 @@ public class Runner {
 		else if (lettergrade.equals("E"))
 			numgrades[4]++;
 		
-		return numgrades; 																// POST: return updated array numgrades
+		return numgrades; 								// POST: return updated array numgrades
 	}
 	
 	public static void main(String[] args) throws IOException {	
-						       															// A,B,C,D,E
-		int[] midnumgrades = {0,0,0,0,0}; 												// Number of letter occurrences in midterm grades
-		int[] finalnumgrades = {0,0,0,0,0}; 											// Number of letter occurrences in final grades
-		int numentries = 0; 															// Number of all entries
+						       						// A,B,C,D,E
+		int[] midnumgrades = {0,0,0,0,0}; 						// Number of letter occurrences in midterm grades
+		int[] finalnumgrades = {0,0,0,0,0}; 						// Number of letter occurrences in final grades
+		int numentries = 0; 								// Number of all entries
 		
-		double midmean = 0; 															// Midterm mean
-		double mid_standard_dev = 0; 													// Midterm StanDev
+		double midmean = 0; 								// Midterm mean
+		double mid_standard_dev = 0; 							// Midterm StanDev
 		
-		double finalmean = 0; 															// Final mean
-		double fin_standard_dev = 0; 													// Final StanDev
+		double finalmean = 0; 								// Final mean
+		double fin_standard_dev = 0; 							// Final StanDev
 		
-		String lettergrade = ""; 														// Letter grade holder
+		String lettergrade = ""; 							// Letter grade holder
 		
-		Scanner scan = new Scanner(System.in); 											// Final name input scanner
+		Scanner scan = new Scanner(System.in); 						// Final name input scanner
 		
 		System.out.println("Grade Roster by Student");
 		
 		System.out.println();
 		
 		System.out.print("Enter name of file: ");
-		Scanner gradescan = new Scanner(new FileReader(scan.next())); 					// File reader scanner from inputted scan name
+		Scanner gradescan = new Scanner(new FileReader(scan.next())); 			// File reader scanner from inputted scan name
 		
 		scan.close();
 		
-		numentries = gradescan.nextInt(); 												// Get number of entries
+		numentries = gradescan.nextInt(); 						// Get number of entries
 		
-		String[] names = new String[numentries]; 										// Set up name array
-		double[] midgrades = new double[numentries]; 									// Set up midterm grade array
-		double[] finalgrades = new double[numentries]; 									// Set up final grade array
+		String[] names = new String[numentries]; 					// Set up name array
+		double[] midgrades = new double[numentries]; 					// Set up midterm grade array
+		double[] finalgrades = new double[numentries]; 					// Set up final grade array
 		
 		System.out.println();
-																						// Output format
+												// Output format
 		System.out.printf("%s %10s %10s %10s %10s%n", "Student", "Midterm","Grade","Final","Grade"); 
 		
-		for (int i = 0; i < numentries; i++) { 											// Go through file for number of entries
-			names[i] = gradescan.next(); 												// Get student name
-			midgrades[i] = gradescan.nextDouble(); 										// Get student midterm grade
-			finalgrades[i] = gradescan.nextDouble();									// Get student final grade
+		for (int i = 0; i < numentries; i++) { 						// Go through file for number of entries
+			names[i] = gradescan.next(); 						// Get student name
+			midgrades[i] = gradescan.nextDouble(); 					// Get student midterm grade
+			finalgrades[i] = gradescan.nextDouble();				// Get student final grade
 		}
-		midmean = arithMean(midgrades); 												// Compute mean of midterms
-		mid_standard_dev = standardDev(midgrades,midmean); 								// Compute StanDev of midterms
+		midmean = arithMean(midgrades); 						// Compute mean of midterms
+		mid_standard_dev = standardDev(midgrades,midmean); 				// Compute StanDev of midterms
 		
-		finalmean = arithMean(finalgrades); 											// Compute mean of finals
-		fin_standard_dev = standardDev(finalgrades,finalmean); 							// Compute STD of finals
+		finalmean = arithMean(finalgrades); 						// Compute mean of finals
+		fin_standard_dev = standardDev(finalgrades,finalmean); 				// Compute StanDev of finals
 		
 		System.out.println();
 		
-		for (int x = 0; x < numentries; x++) { 											// Output loop for number of entries
-			lettergrade = letterGrade(midgrades[x],midmean,mid_standard_dev); 			// Get midterm letter grade
-			midnumgrades = checkGrade(lettergrade,midnumgrades);						// Add up grade occurrence in midnumgrades
+		for (int x = 0; x < numentries; x++) { 						// Output loop for number of entries
+			lettergrade = letterGrade(midgrades[x],midmean,mid_standard_dev); 	// Get midterm letter grade
+			midnumgrades = checkGrade(lettergrade,midnumgrades);			// Add up grade occurrence in midnumgrades
 			
 			System.out.print(String.format("%-10s", names[x]) + String.format("%7s", midgrades[x]) + String.format("%10s", lettergrade));
 			
-			lettergrade = letterGrade(finalgrades[x],finalmean,fin_standard_dev); 		// Get final letter grade
-			finalnumgrades = checkGrade(lettergrade,finalnumgrades); 					// Add up grade occurrence in finalnumgrades
+			lettergrade = letterGrade(finalgrades[x],finalmean,fin_standard_dev); 	// Get final letter grade
+			finalnumgrades = checkGrade(lettergrade,finalnumgrades); 		// Add up grade occurrence in finalnumgrades
 			
 			System.out.print(String.format("%12s", finalgrades[x]) + String.format("%10s", lettergrade));
 			System.out.print("\n");
 			
 		}
 		
-																						// Output section
+												// Output section
 		System.out.println();
 		
 		System.out.println("Midterm Analysis");
 		System.out.println("Mean: " + String.format("%.1f",midmean));
 		System.out.println("Std Dev: " + String.format("%.1f",mid_standard_dev));
 		
-		displayGradeNums(midnumgrades); 												// Display number of occurrences in midterm grades
+		displayGradeNums(midnumgrades); 						// Display number of occurrences in midterm grades
 		
 		System.out.println();
 		
@@ -156,7 +156,7 @@ public class Runner {
 		System.out.println("Mean: " + String.format("%.1f",finalmean));
 		System.out.println("Std Dev: " + String.format("%.1f",fin_standard_dev));
 		
-		displayGradeNums(finalnumgrades); 												// Display number of occurrences in final grades
+		displayGradeNums(finalnumgrades); 						// Display number of occurrences in final grades
 		
 		gradescan.close();
 	}
