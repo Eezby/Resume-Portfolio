@@ -1,0 +1,8 @@
+package a5;
+
+@SuppressWarnings ("serial")
+public class InvalidExceptionCollection extends RuntimeException{
+	 public InvalidExceptionCollection(String message) {
+		super(message);
+	 }
+}
