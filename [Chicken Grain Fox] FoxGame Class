@@ -1,0 +1,115 @@
+package a5;
+import java.util.LinkedList;
+public class FoxGame {
+	String farmerLocation;									// Location of farmer: south bank or north bank
+	LinkedList<String> southBank;								// Items on South Bank
+	LinkedList<String> northBank;								// Items on North Bank
+	
+	public FoxGame()									// POST: Add three items to south bank
+	{											// Place farmer on south bank
+		this.farmerLocation = "South Bank";						// North bank is empty						
+		
+		southBank = new LinkedList<String>();							
+		northBank = new LinkedList<String>();							
+		
+		this.southBank.add("chicken");									 
+		this.southBank.add("fox");
+		this.southBank.add("grain");
+	}
+	
+	public boolean won()									// POST: return true if game won
+	{
+		if (southBank.isEmpty())
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean lost()									// POST: return true if game lost
+	{
+		if (farmerLocation == "South Bank") {
+			if (this.northBank.contains("fox") && this.northBank.contains("chicken"))
+				return true;
+			if (this.northBank.contains("grain") && this.northBank.contains("chicken"))
+				return true;
+		}else {
+			if (this.southBank.contains("fox") && this.southBank.contains("chicken"))
+				return true;
+			if (this.southBank.contains("grain") && this.southBank.contains("chicken"))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean found(String item)
+	{
+		if (farmerLocation == "South Bank")
+			return this.southBank.contains(item);
+		else
+			return this.northBank.contains(item);
+	}
+	
+	public void transport(String item) throws InvalidExceptionCollection
+	{											// PRE: Item is on current bank or string "none"
+		if (!item.equalsIgnoreCase("none")) {						// POST: Item removed from current bank
+												// added to opposite bank
+			try {									// farmer is now on opposite bank
+				if (!found(item))
+					throw new InvalidExceptionCollection("Invalid Transport Value");
+			} catch (InvalidExceptionCollection e){
+				 System.out.println("Invalid Transport Value");
+				 farmerLocation = getOtherBank();
+				 return;
+			}
+				
+			if (farmerLocation == "South Bank") {
+				this.southBank.remove(item);
+				this.northBank.add(item);
+			}else if (farmerLocation == "North Bank") {
+				this.northBank.remove(item);
+				this.southBank.add(item);
+			}
+		}
+			
+	}
+	
+	public String getFarmerBank()								// POST: return bank holding farmer: north bank/south bank
+	{
+		return farmerLocation;
+	}
+	
+	public String getOtherBank()								// POST: return bank not holding farmer
+	{
+		if (farmerLocation == "South Bank")
+			return "North Bank";
+		else
+			return "South Bank";
+	}
+	
+	public String displaySouthBank()							// POST: return contents of south bank
+	{
+		String output = "";
+		
+		for (String e : this.southBank) {
+			output = output + e + ", ";
+		}
+		if (output.length() > 2)
+			output = output.substring(0,output.length()-2);
+		return output;
+	}
+	
+	public String displayNorthBank()							// POST: return contents of north bank
+	{
+		String output = "";
+		
+		for (String e : this.northBank) {
+			output = output + e + ", ";
+		}
+		if (output.length() > 2)
+			output = output.substring(0,output.length()-2);
+		return output;
+	}
+	
+	
+}
