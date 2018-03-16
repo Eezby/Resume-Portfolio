@@ -35,9 +35,9 @@ public class A5FoxGame {
 		System.out.println("Game is over");
 		System.out.println();
 		System.out.println("Farmer location: " + game.getFarmerBank());
-																				// Display south bank items
+																					// Display south bank items
 		System.out.println("South bank contains: [" + game.displaySouthBank() + "]");
-																				// Display north bank items
+																					// Display north bank items
 		System.out.println("North bank contains: [" + game.displayNorthBank() + "]");
 		
 		if (game.lost())															// If game was lost
