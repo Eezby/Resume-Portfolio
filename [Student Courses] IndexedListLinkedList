@@ -4,15 +4,15 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 
 // there are other smaller classes and interfaces that go with this
 	
-	private LinearNode <T> head;					// reference to first node
-	private LinearNode <T> tail;					// reference to last node 
-	private int count;								// number of nodes in the list
+	private LinearNode <T> head;						// reference to first node
+	private LinearNode <T> tail;						// reference to last node 
+	private int count;							// number of nodes in the list
 
-	public IndexedListLinkedList ( )				// POST: empty list
+	public IndexedListLinkedList ( )					// POST: empty list
 	{	head = tail = null;
 		count = 0;		}
 	
-	public void addFirst (T element)				// POST: element added to front of list
+	public void addFirst (T element)					// POST: element added to front of list
 	{	LinearNode<T> newNode = new LinearNode<T>(element);	
 		if (isEmpty())								
 	     	head = tail = newNode;					
@@ -23,7 +23,7 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 		count++;
 	}
 	
-	public void addLast (T element)					// POST: element added to rear of list
+	public void addLast (T element)						// POST: element added to rear of list
 	{	LinearNode<T> newNode = new LinearNode<T>(element);	
 	  	if (isEmpty())								
 	     	head = tail = newNode;					
@@ -35,8 +35,8 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 	}
 	
 	public void add (T element, int position) throws InvalidPositionException	
-	{												// PRE: 0 <= position < count
-		if (position < 0 || position >= count) 		// POST: element added at position
+	{									// PRE: 0 <= position < count
+		if (position < 0 || position >= count) 				// POST: element added at position
 			throw new InvalidPositionException ();
 		if (position == 0)
 			addFirst(element);						
@@ -53,8 +53,8 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 		}
 	}
 			
-	public T removeFirst( )	throws EmptyCollectionException		// PRE:	list is not empty
-	{															// POST: remove and return first element
+	public T removeFirst( )	throws EmptyCollectionException			// PRE:	list is not empty
+	{									// POST: remove and return first element
 		if (isEmpty()) 
 			throw new EmptyCollectionException();
 		LinearNode<T> temp = head;					
@@ -66,8 +66,8 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 	   	return element;		
 	}
 
-	public T removeLast( ) throws EmptyCollectionException		// PRE: list is not empty
-	{															// POST: remove and return last element
+	public T removeLast( ) throws EmptyCollectionException			// PRE: list is not empty
+	{									// POST: remove and return last element
 		if (isEmpty( )) 
 			throw new EmptyCollectionException( );
 		LinearNode<T> temp = tail;				
@@ -85,7 +85,7 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 	}
 
 	public T removeAt (int position) throws InvalidPositionException	// PRE: 0 <= position < count		
-	{															// POST: remove/return element at position
+	{									// POST: remove/return element at position
 		if (position < 0 || position >= count) 
 			throw new InvalidPositionException( );			
 		if (position == 0)							
@@ -103,18 +103,18 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 	  	}
 	}
 
-	public boolean isEmpty ( )									// POST: return true if list is empty, else false
+	public boolean isEmpty ( )						// POST: return true if list is empty, else false
 	{	return count == 0;	}
 	
-	public int size( )											// POST: return number of elements in list	
+	public int size( )							// POST: return number of elements in list	
 	{ return count; }	
 	
-	public void clear ( )										// POST: remove all nodes
+	public void clear ( )							// POST: remove all nodes
 	{	head = tail = null;
 		count = 0;   
 	}
 	
-	public String toString ( )									// POST: return a string representation of list elements
+	public String toString ( )						// POST: return a string representation of list elements
 	{ String result = "[";
 	LinearNode<T> current = head;
 	while (current != null)
@@ -127,20 +127,20 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 	
 	// complete the remaining methods
 	
-	public T remove (T element)									// POST: remove and return specified element
+	public T remove (T element)						// POST: remove and return specified element
 	{	
 		int position = indexOf(element);
 		if (position != -1) {
 			removeAt(position);
 			return element;
 		}
-		return null;											// return null if element is not found
+		return null;							// return null if element is not found
 	}
 			
 	public T first ( )	throws EmptyCollectionException			// PRE:	list is not empty
 	{	
 		if (size() > 0)
-			return head.getElement();							// POST: return first element
+			return head.getElement();				// POST: return first element
 		else
 			throw new EmptyCollectionException();
 			
@@ -149,12 +149,12 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 	public T last ( )	throws EmptyCollectionException			// PRE:	list is not empty
 	{	
 		if (size() > 0)
-			return tail.getElement();							// POST: return last element
+			return tail.getElement();				// POST: return last element
 		else
 			throw new EmptyCollectionException();
 	}
 	
-	public boolean contains (T target)							// POST: return true if list contains target, else false
+	public boolean contains (T target)					// POST: return true if list contains target, else false
 	{	
 		LinearNode<T> current = head;			
 		for (int k = 0; k < count; k++)
@@ -167,7 +167,7 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 		return false;
 	}
 
-	public int indexOf (T element)								// POST: return position of element, else -1
+	public int indexOf (T element)						// POST: return position of element, else -1
 	{	
 		if (isEmpty( )) 
 			throw new EmptyCollectionException( );			
@@ -183,7 +183,7 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 	}
 		
 
-	public T get (int position)	throws InvalidPositionException	// PRE: 0 <= position < size
+	public T get (int position)	throws InvalidPositionException		// PRE: 0 <= position < size
 	{	
 		if (isEmpty( )) 
 			throw new EmptyCollectionException( );	
@@ -196,12 +196,12 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 			current = current.getNext( );
 		}
 		
-		return current.getElement();											// POST: return element at position
+		return current.getElement();					// POST: return element at position
 	}
-
-	public void set (int position, T element) throws InvalidPositionException	// PRE:  0 <= position < size
+										// PRE:  0 <= position < size
+	public void set (int position, T element) throws InvalidPositionException	
 	{	
-		if (position < 0 || position >= count) 		// POST: element added at position
+		if (position < 0 || position >= count) 				// POST: element added at position
 			throw new InvalidPositionException ();
 		if (position == 0)
 			head.setElement(element);						
@@ -216,6 +216,6 @@ public class IndexedListLinkedList<T> implements IndexedList<T> {
 		}
 		
 		
-		return;																	// POST: set element at position
+		return;								// POST: set element at position
 	}
 }
