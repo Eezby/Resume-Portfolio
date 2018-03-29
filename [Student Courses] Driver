@@ -32,7 +32,7 @@ public class A6EthanEsber {
 			name = studentScan.next();
 			studentCourses = studentScan.nextLine();					// Grab all courses to be read in student class
 			
-			Student student = new Student(name,studentCourses);			// Create new Student object
+			Student student = new Student(name,studentCourses);			// Create a new Student object
 			students.addLast(student);									// Add Student object to students linked list
 		}
 		studentScan.close();
