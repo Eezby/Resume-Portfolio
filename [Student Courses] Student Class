@@ -1,0 +1,41 @@
+package a6;
+
+import java.util.Scanner;
+public class Student extends A6EthanEsber {
+	private String name;									// Student name
+															// Student courses
+	private IndexedListLinkedList<String> courses = new IndexedListLinkedList<String> ( );
+	
+	public Student()
+	{
+		this.name = "";
+		this.courses.clear();
+	}														// POST: Set name to "", clear list
+	
+	public Student(String name, String courses) {			// PRE: Courses.Size() > 0
+		Scanner scan = new Scanner(courses);
+		while(scan.hasNext()) {								// Scan through courses
+			this.courses.addLast(scan.next());				// Add courses to courses linked list
+		}
+		this.name = name;
+		scan.close();
+	}														// POST: Set name to name, read/set courses
+	
+	public String toString() {
+		String result = this.name + ": ";
+		result = result + courses.toString();
+		return result;
+	}														// POST: return student name and courses
+		
+	public boolean contains(String target) {
+		if (this.courses.contains(target))
+			return true;
+		else
+			return false;
+	}														// POST: return true if list contains target, false if not
+	
+	public String getName() {
+		return this.name;
+	}														// POST: return student name
+	
+}
