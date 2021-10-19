@@ -1,0 +1,2 @@
+A fully functioning queue system using the memory store that puts together groups of even teams in pairs such as 1v1, 2v2, 3v3, 4v4, and 5v5. There
+are a few external dependencies for a reserved server level id and a custom teleport handler, but the core should fully work.
