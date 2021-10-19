@@ -1,9 +1,7 @@
-package a5;
-
 import java.io.*;
 import java.util.Scanner;
 
-public class A5FoxGame {
+public class Driver {
 	public static void main(String args[]) throws IOException {
 		
 		FoxGame game = new FoxGame();								// Create FoxGame object

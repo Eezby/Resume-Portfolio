@@ -142,5 +142,7 @@ public class FireDriver {
 		}
 		
 		System.out.println(status); 					// Output whether burnt through or not
+
+		scan.close();
 	}
 }

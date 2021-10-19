@@ -1,7 +1,5 @@
-package a6;
-
 import java.util.Scanner;
-public class Student extends A6EthanEsber {
+public class Student extends Driver {
 	private String name;									// Student name
 												// Student courses
 	private IndexedListLinkedList<String> courses = new IndexedListLinkedList<String> ( );

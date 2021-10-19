@@ -1,4 +1,3 @@
-package a5;
 import java.util.LinkedList;
 public class FoxGame {
 	String farmerLocation;									// Location of farmer: south bank or north bank

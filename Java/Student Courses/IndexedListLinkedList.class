@@ -1,5 +1,3 @@
-package a6;
-
 public class IndexedListLinkedList<T> implements IndexedList<T> {
 
 // there are other smaller classes and interfaces that go with this
